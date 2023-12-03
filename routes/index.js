@@ -16,10 +16,9 @@ app.use(
 
 const workos = new WorkOS(process.env.WORKOS_API_KEY)
 const clientID = process.env.WORKOS_CLIENT_ID
-// const organizationID = process.env.WORKOS_ORGANIZATION_ID
-const organizationID = "org_01HGPNBCEX5H903V50HXJJPFJP"
-const directoryID = "directory_01HGQ0GHEN71M6NKXWPBEV3YQ0"
-const redirectURI = "http://localhost:8000/callback"
+const organizationID = process.env.WORKOS_ORGANIZATION_ID
+const directoryID = process.env.WORKOS_DIRECTORY_ID
+const redirectURL = process.env.PRODUCTION_URL || "http://localhost:8000"
 const state = ""
 
 router.get("/", function (req, res) {
@@ -62,7 +61,7 @@ router.post("/login", (req, res) => {
 
   const params = {
     clientID: clientID,
-    redirectURI: redirectURI,
+    redirectURI: redirectURL + "/callback",
     state: state,
   }
 
